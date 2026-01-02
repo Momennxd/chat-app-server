@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{4bf6f64e-f7e7-4fcb-b620-ae53a87639b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entities">
+      <UniqueIdentifier>{b1839e1e-2077-49e8-b56d-81002c74c596}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entities\session">
+      <UniqueIdentifier>{2c95ce09-3ed1-406f-bd59-735ac51164ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entities\router">
+      <UniqueIdentifier>{d33272c4-d226-4421-aa3f-2a81f7021ce4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="mainServer.cpp" />
+    <ClCompile Include="session.cpp">
+      <Filter>src\entities\session</Filter>
+    </ClCompile>
+    <ClCompile Include="router.cpp">
+      <Filter>src\entities\router</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="session.h">
+      <Filter>src\entities\session</Filter>
+    </ClInclude>
+    <ClInclude Include="router.h">
+      <Filter>src\entities\router</Filter>
+    </ClInclude>
+    <ClInclude Include="DEF_CORE.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
