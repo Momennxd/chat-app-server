@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <queue>
+#include "message.h"
 
 using namespace std;
 using namespace asio;
@@ -28,10 +29,10 @@ void StartAccepting(io_context& io, tcp::acceptor& acceptor, vector<shared_ptr<t
 
             clients.push_back(socket);
 
-            // send message with newline
-            string msg = "hi there\n";
+            message msg("momen", 1, "hi");
+            auto msg_buffer = msg.serialize();
           
-            asio::async_write(*socket, asio::buffer(msg),
+            asio::async_write(*socket, asio::buffer(msg_buffer),
                 [socket](const asio::error_code& ec, size_t bytes_sent) {
                     if (!ec) {
                         cout << "Sent message to client\n";
@@ -49,8 +50,8 @@ void StartAccepting(io_context& io, tcp::acceptor& acceptor, vector<shared_ptr<t
 }
 
 int main() {
+
     io_context io;
-    asio::strand<asio::io_context::executor_type> strand_;
 
     tcp::acceptor acceptor(io, tcp::endpoint(tcp::v4(), 1234));
     cout << "Server running...\n";
@@ -58,5 +59,8 @@ int main() {
     StartAccepting(io, acceptor, clients);
   
     io.run();
+
+   
+
     return 0;
 }

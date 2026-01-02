@@ -6,6 +6,7 @@
 #include "DEF_CORE.h"
 #include "message.h"
 
+
 using namespace std;
 using namespace asio;
 using namespace asio::ip;
@@ -23,23 +24,23 @@ private:
 
 
 	void _do_write_async();
-	void _abort();
+	 void _abort();
 
 public:
 
-	int getid();
-	void set_id(const int id);
+	 int getid();
+	 void set_id(const int id);
 
-	int touch();
-	int get_idle_time();
+	 void touch();
+	 int get_idle_time();
 
 	session(tcp::socket& socket, int id);
 
 	void socket_write_async(const message& msg);
 
-	void close();
+	  void close();
 
-	bool is_active();
+	  bool is_active();
 
 	~session();
 

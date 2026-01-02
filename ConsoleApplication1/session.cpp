@@ -16,7 +16,7 @@ void session::set_id(const int id)
 
 
 
-int session::touch()
+void session::touch()
 {
 	this->m_last_active = std::chrono::system_clock::now();
 }
@@ -63,8 +63,9 @@ bool session::is_active()
 void session::_do_write_async()
 {
 	if (this->m_messages.empty() || !this->is_active()) return;
-	string& top = this->m_messages.front().msg;
-	asio::async_write(this->m_socket, asio::buffer(top),
+	const auto& msg = this->m_messages.front();
+	const auto& msg_buffer = msg.serialize();
+	asio::async_write(this->m_socket, asio::buffer(msg_buffer),
 		[self = shared_from_this()](const asio::error_code& ec, size_t bytes_sent) {
 
 			//TO DO  ==>
