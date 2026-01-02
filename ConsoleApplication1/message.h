@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include "BIT.h"
 using namespace std;
 
 struct message
@@ -18,7 +19,7 @@ struct message
 
 	message() {
 		this->sender_name = "";
-		this->group_id = -1;
+		this->group_id = 0;
 		this->text = "";
 	}
 
@@ -76,7 +77,21 @@ struct message
 		return buffer;
 	}
 
-	inline vector<uint8_t> serialize() const {
+	inline vector<uint8_t> serialize() const {		
 		return serialize(*this);
 	}
+
+	// 1 0 0 1  0 0 0 0  1 1 1 1  0 0 0 0
+	inline static message deserialize(const vector<uint8_t>& buffer) {
+		if (buffer.size() < 12) throw runtime_error("buffer too small");
+		message msg;
+		msg.group_id = BIT::bytes_to_uint32(buffer.data());
+		uint32_t sender_len = BIT::bytes_to_uint32(buffer.data() + 4);
+		if (buffer.size() - 8 < sender_len) throw runtime_error("buffer too small");
+		msg.sender_name = string(reinterpret_cast<const char*>(buffer.data() + 8), sender_len);
+		uint32_t text_len = BIT::bytes_to_uint32(buffer.data() + 8 + msg.sender_name.size());
+		msg.text = string(reinterpret_cast<const char*>(buffer.data() + 12 + msg.sender_name.size()), text_len);
+		return msg;
+	}
+
 };

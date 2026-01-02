@@ -142,6 +142,7 @@
     <ClCompile Include="mainServer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BIT.h" />
     <ClInclude Include="DEF_CORE.h" />
     <ClInclude Include="group_chat.h" />
     <ClInclude Include="message.h" />

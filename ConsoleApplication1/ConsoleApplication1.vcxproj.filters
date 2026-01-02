@@ -23,6 +23,9 @@
     <Filter Include="src\entities\group">
       <UniqueIdentifier>{7692ac46-3ab7-4645-b2d5-3c05f0b575cc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\util">
+      <UniqueIdentifier>{5441a36a-0f33-4b3a-a9db-6cb9c5c30437}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mainServer.cpp" />
@@ -52,5 +55,6 @@
     <ClInclude Include="group_chat.h">
       <Filter>src\entities\group</Filter>
     </ClInclude>
+    <ClInclude Include="BIT.h" />
   </ItemGroup>
 </Project>

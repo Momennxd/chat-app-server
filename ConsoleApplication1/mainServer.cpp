@@ -51,15 +51,26 @@ void StartAccepting(io_context& io, tcp::acceptor& acceptor, vector<shared_ptr<t
 
 int main() {
 
-    io_context io;
+    //io_context io;
 
-    tcp::acceptor acceptor(io, tcp::endpoint(tcp::v4(), 1234));
-    cout << "Server running...\n";
+    //tcp::acceptor acceptor(io, tcp::endpoint(tcp::v4(), 1234));
+    //cout << "Server running...\n";
 
-    StartAccepting(io, acceptor, clients);
+    //StartAccepting(io, acceptor, clients);
   
-    io.run();
+    //io.run();
 
+    message msg("@@@@@@@@@@@@@", 8435324, "");
+    auto buffer = msg.serialize();
+
+    message msg2 = message::deserialize(buffer);
+
+    cout << msg2.group_id << endl;
+    cout << msg2.sender_name << endl;
+    cout << msg2.text << endl;
+
+
+    
    
 
     return 0;
