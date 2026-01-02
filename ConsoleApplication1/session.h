@@ -4,6 +4,7 @@
 #include <iostream>
 #include <queue>
 #include "DEF_CORE.h"
+#include "message.h"
 
 using namespace std;
 using namespace asio;
@@ -17,7 +18,7 @@ private:
 
 	tcp::socket m_socket;
 	std::chrono::system_clock::time_point m_last_active;
-	queue<string> m_messages;
+	queue<message> m_messages;
 	int m_id;
 
 
@@ -34,7 +35,7 @@ public:
 
 	session(tcp::socket& socket, int id);
 
-	void socket_write_async(const string& msg);
+	void socket_write_async(const message& msg);
 
 	void close();
 

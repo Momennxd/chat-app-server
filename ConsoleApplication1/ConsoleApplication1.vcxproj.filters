@@ -17,6 +17,12 @@
     <Filter Include="src\entities\router">
       <UniqueIdentifier>{d33272c4-d226-4421-aa3f-2a81f7021ce4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\entities\message">
+      <UniqueIdentifier>{511528e5-8713-4ff1-8b41-2ba4d637a251}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entities\group">
+      <UniqueIdentifier>{7692ac46-3ab7-4645-b2d5-3c05f0b575cc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mainServer.cpp" />
@@ -25,6 +31,9 @@
     </ClCompile>
     <ClCompile Include="router.cpp">
       <Filter>src\entities\router</Filter>
+    </ClCompile>
+    <ClCompile Include="group_chat.cpp">
+      <Filter>src\entities\group</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -36,6 +45,12 @@
     </ClInclude>
     <ClInclude Include="DEF_CORE.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="message.h">
+      <Filter>src\entities\message</Filter>
+    </ClInclude>
+    <ClInclude Include="group_chat.h">
+      <Filter>src\entities\group</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

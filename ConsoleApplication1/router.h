@@ -1,6 +1,6 @@
 #pragma once
-class router
+static class router
 {
-
+	
 };
 

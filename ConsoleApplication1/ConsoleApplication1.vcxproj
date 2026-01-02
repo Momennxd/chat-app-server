@@ -136,12 +136,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="group_chat.cpp" />
     <ClCompile Include="router.cpp" />
     <ClCompile Include="session.cpp" />
     <ClCompile Include="mainServer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DEF_CORE.h" />
+    <ClInclude Include="group_chat.h" />
+    <ClInclude Include="message.h" />
     <ClInclude Include="router.h" />
     <ClInclude Include="session.h" />
   </ItemGroup>

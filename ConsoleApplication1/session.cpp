@@ -1,5 +1,6 @@
 #include "session.h"
-
+#include "group_chat.h"
+#include "asio.hpp"
 
 
 int session::getid()
@@ -12,6 +13,8 @@ void session::set_id(const int id)
 	if (id <= 0) throw runtime_error("id has to be positive");
 	this->m_id = id;
 }
+
+
 
 int session::touch()
 {
@@ -32,7 +35,7 @@ session::session(tcp::socket& socket, int id) : m_socket(move(socket)) {
 	this->m_id = id;
 }
 
-void session::socket_write_async(const string& msg)
+void session::socket_write_async(const message& msg)
 {
 	if (!is_active()) return;
 	this->m_messages.push(msg);
@@ -60,7 +63,7 @@ bool session::is_active()
 void session::_do_write_async()
 {
 	if (this->m_messages.empty() || !this->is_active()) return;
-	string& top = this->m_messages.front();
+	string& top = this->m_messages.front().msg;
 	asio::async_write(this->m_socket, asio::buffer(top),
 		[self = shared_from_this()](const asio::error_code& ec, size_t bytes_sent) {
 

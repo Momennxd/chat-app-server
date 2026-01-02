@@ -7,6 +7,14 @@ using namespace std;
 using namespace asio;
 using namespace asio::ip;
 
+//1. What is a strand in ASIO ?
+//
+//A strand is a mechanism in ASIO that guarantees that handlers(callbacks) do not execute concurrently.
+//
+//Even if your io_context has multiple threads running(io_context.run() in multiple threads), a strand ensures that the code inside its handlers runs one at a time, in order.
+//
+//This is extremely useful for serializing access to shared data, like your m_messages queue.
+
 vector<shared_ptr<tcp::socket>> clients;
 int n = 0;
 
@@ -42,6 +50,7 @@ void StartAccepting(io_context& io, tcp::acceptor& acceptor, vector<shared_ptr<t
 
 int main() {
     io_context io;
+    asio::strand<asio::io_context::executor_type> strand_;
 
     tcp::acceptor acceptor(io, tcp::endpoint(tcp::v4(), 1234));
     cout << "Server running...\n";
