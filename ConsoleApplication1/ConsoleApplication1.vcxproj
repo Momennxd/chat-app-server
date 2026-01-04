@@ -137,7 +137,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Group_service.cpp" />
-    <ClCompile Include="messenger.cpp" />
     <ClCompile Include="messenger_service.cpp" />
     <ClCompile Include="session.cpp" />
     <ClCompile Include="mainServer.cpp" />
@@ -150,7 +149,6 @@
     <ClInclude Include="IGroup_repo.h" />
     <ClInclude Include="ISession_service.h" />
     <ClInclude Include="message.h" />
-    <ClInclude Include="messenger.h" />
     <ClInclude Include="ISession_repo.h" />
     <ClInclude Include="IMessenger_service.h" />
     <ClInclude Include="session.h" />

@@ -26,9 +26,6 @@
     <Filter Include="src\data\group">
       <UniqueIdentifier>{18c84257-93a5-4098-8471-d8c5e5e712a9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\entities\messenger">
-      <UniqueIdentifier>{d33272c4-d226-4421-aa3f-2a81f7021ce4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\message">
       <UniqueIdentifier>{511528e5-8713-4ff1-8b41-2ba4d637a251}</UniqueIdentifier>
     </Filter>
@@ -50,9 +47,6 @@
     <ClCompile Include="session.cpp">
       <Filter>src\entities\session</Filter>
     </ClCompile>
-    <ClCompile Include="messenger.cpp">
-      <Filter>src\entities\messenger</Filter>
-    </ClCompile>
     <ClCompile Include="Group_service.cpp">
       <Filter>src\services\groups_services</Filter>
     </ClCompile>
@@ -63,9 +57,6 @@
   <ItemGroup>
     <ClInclude Include="session.h">
       <Filter>src\entities\session</Filter>
-    </ClInclude>
-    <ClInclude Include="messenger.h">
-      <Filter>src\entities\messenger</Filter>
     </ClInclude>
     <ClInclude Include="DEF_CORE.h">
       <Filter>src</Filter>
