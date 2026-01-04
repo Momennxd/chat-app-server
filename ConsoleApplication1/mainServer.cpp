@@ -3,6 +3,16 @@
 #include <vector>
 #include <queue>
 #include "message.h"
+#include "IGroup_service.h"
+#include "Group_service.cpp"
+#include "IGroup_repo.h"
+#include "Group_repo.cpp"
+
+#include "ISession_service.h"
+#include "session_service.cpp"
+#include "ISession_repo.h"
+#include "session_repo.cpp"
+
 
 using namespace std;
 using namespace asio;
@@ -51,27 +61,32 @@ void StartAccepting(io_context& io, tcp::acceptor& acceptor, vector<shared_ptr<t
 
 int main() {
 
-    //io_context io;
+   /* io_context io;
 
-    //tcp::acceptor acceptor(io, tcp::endpoint(tcp::v4(), 1234));
-    //cout << "Server running...\n";
+    tcp::acceptor acceptor(io, tcp::endpoint(tcp::v4(), 1234));
+    cout << "Server running...\n";
 
-    //StartAccepting(io, acceptor, clients);
+    StartAccepting(io, acceptor, clients);
   
-    //io.run();
-
-    message msg("@@@@@@@@@@@@@", 8435324, "");
-    auto buffer = msg.serialize();
-
-    message msg2 = message::deserialize(buffer);
-
-    cout << msg2.group_id << endl;
-    cout << msg2.sender_name << endl;
-    cout << msg2.text << endl;
+    io.run();*/
 
 
-    
+    shared_ptr<IGroup_repo> gr = make_shared<group_repo>();
+    group_service gs(gr);
+    gs.add_group();
    
+
+    shared_ptr<ISession_repo> sr = make_shared<session_repo>();
+    session_service ss(sr);
+    io_context io;
+    tcp::socket sk(io);
+    ss.add_session(move(sk));
+
+    gs.connect_to_group(1, ss.get_session(1));
+    auto res = gs.get_group_sessions(1);
+    for (auto el : res) {
+        cout << el->getid() << endl;
+    }
 
     return 0;
 }

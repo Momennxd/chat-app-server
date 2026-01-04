@@ -28,19 +28,19 @@ private:
 
 public:
 
-	 int getid();
-	 void set_id(const int id);
+	int getid() const;
+	void set_id(const int id);
 
-	 void touch();
-	 int get_idle_time();
+	void touch();
+	int get_idle_time();
 
-	session(tcp::socket& socket, int id);
+	session(tcp::socket&& socket, int id);
 
 	void socket_write_async(const message& msg);
 
-	  void close();
+	void close();
 
-	  bool is_active();
+	bool is_active();
 
 	~session();
 

@@ -3,12 +3,12 @@
 #include "asio.hpp"
 
 
-int session::getid()
+int session::getid() const
 {
 	return this->m_id;
 }
 
-void session::set_id(const int id)
+void session::set_id(const int id) 
 {
 	if (id <= 0) throw runtime_error("id has to be positive");
 	this->m_id = id;
@@ -30,14 +30,14 @@ int session::get_idle_time()
 
 
 
-session::session(tcp::socket& socket, int id) : m_socket(move(socket)) {
-	while (!this->m_messages.empty()) this->m_messages.pop();
-	this->m_id = id;
+session::session(tcp::socket&& socket, int id)
+	: m_socket(std::move(socket)), m_id(id) {
 }
 
 void session::socket_write_async(const message& msg)
 {
 	if (!is_active()) return;
+	this->touch();
 	this->m_messages.push(msg);
 	if (this->m_messages.size() > 1) return;
 	
@@ -69,7 +69,7 @@ void session::_do_write_async()
 		[self = shared_from_this()](const asio::error_code& ec, size_t bytes_sent) {
 
 			//TO DO  ==>
-			//HANDLE ERROR WHEN SERVER TIRES TO TALK TO CLIENT.
+			//HANDLE ERROR WHEN SERVER TIRES TO TALK TO CLIENT like a time out.
 			
 			self->m_messages.pop();
 			if (self->m_messages.size() > 0) self->_do_write_async();

@@ -1,0 +1,61 @@
+
+
+
+CLIENT --> NETWORK LAYER --> REQUEST PARSER --> COMMAND HANDLER --> SERVICE LAYERS --> DATA LAYER
+
+
+-Network Layer
+
+Reads bytes from client sockets
+Produces raw request messages
+
+
+-Request Parser
+
+Converts raw message into typed request objects
+e.g., AddGroupRequest, SendMessageRequest
+
+
+-Router / Command Handler
+
+Based on request type, calls appropriate service
+Minimal logic — just dispatch
+Service Layers
+SessionService
+GroupService
+MessageService
+
+
+They all interact with:
+
+Repository / Data Store abstraction
+ISessionRepository
+IGroupRepository
+
+
+
+============================================
+
+
+Client
+   |
+   v
+NetworkListener (ASIO)
+   |
+   v
+RequestParser
+   |
+   v
+RequestRouter
+   |-----------------------------|
+   |                             |
+   v                             v
+SessionService             GroupService         MessageService
+   |                             |                       |
+Repository Interfaces -------------------> Concrete Repositories
+                                                 (data_center)
+
+
+
+
+

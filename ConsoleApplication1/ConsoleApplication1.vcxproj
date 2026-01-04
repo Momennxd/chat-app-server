@@ -136,18 +136,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="group_chat.cpp" />
-    <ClCompile Include="router.cpp" />
+    <ClCompile Include="Group_service.cpp" />
+    <ClCompile Include="messenger.cpp" />
+    <ClCompile Include="messenger_service.cpp" />
     <ClCompile Include="session.cpp" />
     <ClCompile Include="mainServer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BIT.h" />
     <ClInclude Include="DEF_CORE.h" />
-    <ClInclude Include="group_chat.h" />
+    <ClInclude Include="group_repo.cpp" />
+    <ClInclude Include="IGroup_service.h" />
+    <ClInclude Include="IGroup_repo.h" />
+    <ClInclude Include="ISession_service.h" />
     <ClInclude Include="message.h" />
-    <ClInclude Include="router.h" />
+    <ClInclude Include="messenger.h" />
+    <ClInclude Include="ISession_repo.h" />
+    <ClInclude Include="IMessenger_service.h" />
     <ClInclude Include="session.h" />
+    <ClInclude Include="session_repo.cpp" />
+    <ClInclude Include="session_service.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Design.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

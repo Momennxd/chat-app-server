@@ -14,17 +14,35 @@
     <Filter Include="src\entities\session">
       <UniqueIdentifier>{2c95ce09-3ed1-406f-bd59-735ac51164ac}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\entities\router">
-      <UniqueIdentifier>{d33272c4-d226-4421-aa3f-2a81f7021ce4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\entities\message">
-      <UniqueIdentifier>{511528e5-8713-4ff1-8b41-2ba4d637a251}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\entities\group">
-      <UniqueIdentifier>{7692ac46-3ab7-4645-b2d5-3c05f0b575cc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\util">
       <UniqueIdentifier>{5441a36a-0f33-4b3a-a9db-6cb9c5c30437}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\data">
+      <UniqueIdentifier>{0238e22b-ae28-483f-a832-d0d199f148b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\data\session">
+      <UniqueIdentifier>{70594f1b-d1be-4e48-b80d-e394237bbd22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\data\group">
+      <UniqueIdentifier>{18c84257-93a5-4098-8471-d8c5e5e712a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entities\messenger">
+      <UniqueIdentifier>{d33272c4-d226-4421-aa3f-2a81f7021ce4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\message">
+      <UniqueIdentifier>{511528e5-8713-4ff1-8b41-2ba4d637a251}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\services">
+      <UniqueIdentifier>{dae2c214-6b7a-4abe-9e67-5dcc4aa081a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\services\sessions_services">
+      <UniqueIdentifier>{e6757b69-de64-4504-9843-b9b586772190}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\services\groups_services">
+      <UniqueIdentifier>{c1361fb9-30b5-424f-816d-c71e7928958a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\services\messenger_service">
+      <UniqueIdentifier>{83c73402-acd3-4618-ada5-8d84fa345559}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -32,29 +50,58 @@
     <ClCompile Include="session.cpp">
       <Filter>src\entities\session</Filter>
     </ClCompile>
-    <ClCompile Include="router.cpp">
-      <Filter>src\entities\router</Filter>
+    <ClCompile Include="messenger.cpp">
+      <Filter>src\entities\messenger</Filter>
     </ClCompile>
-    <ClCompile Include="group_chat.cpp">
-      <Filter>src\entities\group</Filter>
+    <ClCompile Include="Group_service.cpp">
+      <Filter>src\services\groups_services</Filter>
+    </ClCompile>
+    <ClCompile Include="messenger_service.cpp">
+      <Filter>src\services\messenger_service</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="session.h">
       <Filter>src\entities\session</Filter>
     </ClInclude>
-    <ClInclude Include="router.h">
-      <Filter>src\entities\router</Filter>
+    <ClInclude Include="messenger.h">
+      <Filter>src\entities\messenger</Filter>
     </ClInclude>
     <ClInclude Include="DEF_CORE.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="message.h">
-      <Filter>src\entities\message</Filter>
+      <Filter>src\message</Filter>
     </ClInclude>
-    <ClInclude Include="group_chat.h">
-      <Filter>src\entities\group</Filter>
+    <ClInclude Include="BIT.h">
+      <Filter>src\util</Filter>
     </ClInclude>
-    <ClInclude Include="BIT.h" />
+    <ClInclude Include="ISession_repo.h">
+      <Filter>src\data\session</Filter>
+    </ClInclude>
+    <ClInclude Include="session_repo.cpp">
+      <Filter>src\data\session</Filter>
+    </ClInclude>
+    <ClInclude Include="IGroup_repo.h">
+      <Filter>src\data\group</Filter>
+    </ClInclude>
+    <ClInclude Include="group_repo.cpp">
+      <Filter>src\data\group</Filter>
+    </ClInclude>
+    <ClInclude Include="ISession_service.h">
+      <Filter>src\services\sessions_services</Filter>
+    </ClInclude>
+    <ClInclude Include="session_service.cpp">
+      <Filter>src\services\sessions_services</Filter>
+    </ClInclude>
+    <ClInclude Include="IGroup_service.h">
+      <Filter>src\services\groups_services</Filter>
+    </ClInclude>
+    <ClInclude Include="IMessenger_service.h">
+      <Filter>src\services\messenger_service</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Design.txt" />
   </ItemGroup>
 </Project>
