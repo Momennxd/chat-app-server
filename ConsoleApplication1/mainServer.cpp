@@ -71,22 +71,8 @@ int main() {
     io.run();*/
 
 
-    shared_ptr<IGroup_repo> gr = make_shared<group_repo>();
-    group_service gs(gr);
-    gs.add_group();
-   
+  
 
-    shared_ptr<ISession_repo> sr = make_shared<session_repo>();
-    session_service ss(sr);
-    io_context io;
-    tcp::socket sk(io);
-    ss.add_session(move(sk));
-
-    gs.connect_to_group(1, ss.get_session(1));
-    auto res = gs.get_group_sessions(1);
-    for (auto el : res) {
-        cout << el->getid() << endl;
-    }
-
+    
     return 0;
 }

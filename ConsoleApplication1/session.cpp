@@ -1,5 +1,4 @@
 #include "session.h"
-#include "group_chat.h"
 #include "asio.hpp"
 
 

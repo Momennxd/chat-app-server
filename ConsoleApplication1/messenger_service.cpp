@@ -1,27 +1,28 @@
 #include "IMessenger_service.h"
 
-class messenger_service : public IMessenger_service
+class messenger_service : IMessenger_service
 {
 private:
 
-	shared_ptr<IGroup_service> _gs;
-	shared_ptr<ISession_service> _ss;
+	shared_ptr<IGroup_repo> _gr;
+	shared_ptr<ISession_repo> _sr;
 
 public:
-	messenger_service(shared_ptr<IGroup_service> gs, shared_ptr<ISession_service> ss) {
-		this->_gs = gs;
-		this->_ss = ss;
+	messenger_service(std::shared_ptr<IGroup_repo> gs,
+		std::shared_ptr<ISession_repo> ss)
+		: _gr(std::move(gs)), _sr(std::move(ss))
+	{
 	}
 
-	void send_message(int group_id, const message& msg)
+	void send_message(int group_id, const message& msg) override
 	{
-		auto session_set = _gs->get_group_sessions(group_id);
+		auto session_set = _gr->get_group_sessions(group_id);
 		for (auto& s : session_set) {
 			if (s) {
 				s->socket_write_async(msg);
 			}
 		}
-	
+
 	}
 
 };
