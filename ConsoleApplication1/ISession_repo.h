@@ -2,7 +2,6 @@
 #include "DEF_CORE.h"
 #include "message.h"
 #include "session.h"
-#include <asio.hpp>
 #include <chrono>
 #include <iostream>
 #include <queue>

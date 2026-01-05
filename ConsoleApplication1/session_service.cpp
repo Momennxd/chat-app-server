@@ -21,14 +21,13 @@ public:
 
 	session_service(shared_ptr<ISession_repo> sp) : _sp(sp) {}
 
-
-	int add_session(tcp::socket&& socket) override {
+	uint32_t add_session(tcp::socket&& socket) override {
 		return _sp->add_session(move(socket));
 	}
-	void remove_session(int session_id) override {
+	void remove_session(uint32_t session_id) override {
 		this->_sp->remove_session(session_id);
 	}
-	const shared_ptr<session> get_session(int session_id) override {
+	shared_ptr<const session> get_session(uint32_t session_id) override {
 		return this->_sp->get_session(session_id);
 	}
 };

@@ -3,7 +3,6 @@
 #include "message.h"
 #include "session.h"
 #include "ISession_repo.h"
-#include <asio.hpp>
 #include <chrono>
 #include <iostream>
 #include <queue>
@@ -28,8 +27,11 @@ public:
 		std::lock_guard<std::mutex> lock(_gLock);
 		++this->_sessions_count;
 
-		auto s_ptr = std::make_shared<session>(std::move(socket), _sessions_count);
-		_sessions.emplace(_sessions_count, s_ptr);
+		// Create a shared_ptr to session
+		auto new_session = std::make_shared<session>(std::move(socket), _sessions_count);
+
+		// Insert into the sessions map
+		_sessions.emplace(_sessions_count, new_session);
 
 		return _sessions_count;
 	}

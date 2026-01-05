@@ -138,12 +138,14 @@
   <ItemGroup>
     <ClCompile Include="Group_service.cpp" />
     <ClCompile Include="messenger_service.cpp" />
+    <ClCompile Include="router.cpp" />
     <ClCompile Include="session.cpp" />
     <ClCompile Include="mainServer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BIT.h" />
     <ClInclude Include="DEF_CORE.h" />
+    <ClInclude Include="enums.h" />
     <ClInclude Include="group_repo.cpp" />
     <ClInclude Include="IGroup_service.h" />
     <ClInclude Include="IGroup_repo.h" />
@@ -151,8 +153,11 @@
     <ClInclude Include="ISession_service.h" />
     <ClInclude Include="message.h" />
     <ClInclude Include="ISession_repo.h" />
+    <ClInclude Include="request.h" />
+    <ClInclude Include="router.h" />
     <ClInclude Include="session.h" />
     <ClInclude Include="session_repo.cpp" />
+    <ClInclude Include="add_session_request.h" />
     <ClInclude Include="session_service.cpp" />
   </ItemGroup>
   <ItemGroup>

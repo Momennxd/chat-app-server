@@ -3,15 +3,6 @@
 #include <vector>
 #include <queue>
 #include "message.h"
-#include "IGroup_service.h"
-#include "Group_service.cpp"
-#include "IGroup_repo.h"
-#include "Group_repo.cpp"
-
-#include "ISession_service.h"
-#include "session_service.cpp"
-#include "ISession_repo.h"
-#include "session_repo.cpp"
 
 
 using namespace std;
@@ -69,7 +60,6 @@ int main() {
     StartAccepting(io, acceptor, clients);
   
     io.run();*/
-
 
   
 

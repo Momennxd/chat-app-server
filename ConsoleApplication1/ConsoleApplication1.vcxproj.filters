@@ -26,9 +26,6 @@
     <Filter Include="src\data\group">
       <UniqueIdentifier>{18c84257-93a5-4098-8471-d8c5e5e712a9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\message">
-      <UniqueIdentifier>{511528e5-8713-4ff1-8b41-2ba4d637a251}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\services">
       <UniqueIdentifier>{dae2c214-6b7a-4abe-9e67-5dcc4aa081a4}</UniqueIdentifier>
     </Filter>
@@ -40,6 +37,24 @@
     </Filter>
     <Filter Include="src\services\messenger_service">
       <UniqueIdentifier>{83c73402-acd3-4618-ada5-8d84fa345559}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entities\message">
+      <UniqueIdentifier>{511528e5-8713-4ff1-8b41-2ba4d637a251}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entities\request">
+      <UniqueIdentifier>{fd7b0f22-3866-4cd0-85f0-d09ac37921d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\util\libs">
+      <UniqueIdentifier>{46a0d3d9-e9b8-49e4-b692-b657e2aac8e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\util\enums">
+      <UniqueIdentifier>{2cd35992-a3e2-43c8-9f23-9ed999ff058d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\services\router">
+      <UniqueIdentifier>{fa5a1115-ecb2-44d5-8ba6-175559605f5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entities\request\base">
+      <UniqueIdentifier>{0d46d28a-6f15-4dee-8825-f54c5e44c158}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -53,6 +68,9 @@
     <ClCompile Include="messenger_service.cpp">
       <Filter>src\services\messenger_service</Filter>
     </ClCompile>
+    <ClCompile Include="router.cpp">
+      <Filter>src\services\router</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="session.h">
@@ -62,10 +80,7 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="message.h">
-      <Filter>src\message</Filter>
-    </ClInclude>
-    <ClInclude Include="BIT.h">
-      <Filter>src\util</Filter>
+      <Filter>src\entities\message</Filter>
     </ClInclude>
     <ClInclude Include="ISession_repo.h">
       <Filter>src\data\session</Filter>
@@ -90,6 +105,21 @@
     </ClInclude>
     <ClInclude Include="IMessenger_service.h">
       <Filter>src\services\messenger_service</Filter>
+    </ClInclude>
+    <ClInclude Include="BIT.h">
+      <Filter>src\util\libs</Filter>
+    </ClInclude>
+    <ClInclude Include="enums.h">
+      <Filter>src\util\enums</Filter>
+    </ClInclude>
+    <ClInclude Include="router.h">
+      <Filter>src\services\router</Filter>
+    </ClInclude>
+    <ClInclude Include="request.h">
+      <Filter>src\entities\request\base</Filter>
+    </ClInclude>
+    <ClInclude Include="add_session_request.h">
+      <Filter>src\entities\request</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
