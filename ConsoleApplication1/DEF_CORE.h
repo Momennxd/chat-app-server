@@ -1,7 +1,7 @@
 #pragma once
 
 /////////////////////////////////////////////////
-#define MAX_SPAN_IDLE_SESSION_SECONDS = 10000;
+#define MAX_SPAN_IDLE_SESSION_SECONDS = 1e6;
 
 
 

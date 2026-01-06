@@ -79,13 +79,13 @@ int main() {
     tcp::socket socket(io);
     auto req = make_shared<add_session_req>(move(socket));
     shared_ptr<response> resp = r.rout(req);
-  
+    
+
     std::shared_ptr<typed_response<uint32_t>> ts =
         std::dynamic_pointer_cast<typed_response<uint32_t>>(resp);
 
     if (ts) {
         uint32_t value = ts->value();
-        cout << value << endl;
     }
 
     return 0;

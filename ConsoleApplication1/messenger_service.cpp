@@ -14,15 +14,15 @@ public:
 	{
 	}
 
-	void send_message(int group_id, const message& msg) override
+	typed_response<uint32_t> send_message(uint32_t group_id, const message& msg) override
 	{
 		auto session_set = _gr->get_group_sessions(group_id);
-		for (auto& s : session_set) {
+		for (auto& s : session_set.value()) {
 			if (s) {
 				s->socket_write_async(msg);
 			}
 		}
-
+		return typed_response<uint32_t>(OK, 0);
 	}
 
 };

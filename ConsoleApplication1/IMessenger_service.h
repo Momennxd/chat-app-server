@@ -9,6 +9,6 @@ class IMessenger_service
 public:
 
 	virtual ~IMessenger_service() = default;
-	virtual void send_message(int group_id, const message& msg) = 0;
+	virtual typed_response<uint32_t> send_message(uint32_t group_id, const message& msg) = 0;
 
 };

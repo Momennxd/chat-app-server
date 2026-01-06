@@ -22,6 +22,7 @@ public:
         std::shared_ptr<ISession_service> ss,
         std::shared_ptr<IGroup_service>,
         std::shared_ptr<IMessenger_service>
+
     ) override
     {
         if (!ss) {
