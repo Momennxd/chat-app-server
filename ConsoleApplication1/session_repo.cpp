@@ -1,14 +1,4 @@
-#pragma once
-#include "DEF_CORE.h"
-#include "message.h"
-#include "session.h"
-#include "ISession_repo.h"
-#include <chrono>
-#include <iostream>
-#include <queue>
-#include <unordered_map>
-#include <unordered_set>
-#include <mutex>
+
 
 class session_repo : public ISession_repo
 {
@@ -22,37 +12,38 @@ public:
 	session_repo() {
 		_sessions_count = 0;
 	}
-	int add_session(tcp::socket&& socket) override
+	typed_response<uint32_t> add_session(tcp::socket&& socket) override
 	{
 		std::lock_guard<std::mutex> lock(_gLock);
 		++this->_sessions_count;
-
-		// Create a shared_ptr to session
 		auto new_session = std::make_shared<session>(std::move(socket), _sessions_count);
 
-		// Insert into the sessions map
 		_sessions.emplace(_sessions_count, new_session);
 
-		return _sessions_count;
+
+		//returns the added session id
+		return typed_response<uint32_t>(OK, _sessions_count);
 	}
 
-	void remove_session(int session_id) override
+	typed_response<uint32_t> remove_session(uint32_t session_id) override
 	{
 		std::lock_guard<std::mutex> lock(_gLock);
+		if (!this->_sessions.count(session_id)) return typed_response<uint32_t>(SESSION_NOT_EXIST_IN_DB, 0);
 		this->_sessions.erase(session_id);
+		return typed_response<uint32_t>(OK, 0);
 	}
 
-	const shared_ptr<session> get_session(int session_id) override
+	typed_response<shared_ptr<const session>> get_session(uint32_t session_id) override
 	{
 		std::lock_guard<std::mutex> lock(_gLock);
 		auto it = this->_sessions.find(session_id);
-		if (it == this->_sessions.end()) return nullptr;
-		return it->second;
+		if (it == this->_sessions.end()) return typed_response<shared_ptr<const session>>(SESSION_NOT_EXIST_IN_DB, nullptr);
+		return typed_response<shared_ptr<const session>>(OK, it->second);
 	}
 
-	int get_sessions_size() {
+	typed_response<size_t> get_sessions_size() {
 		std::lock_guard<std::mutex> lock(_gLock);
-		return _sessions.size();
+		return typed_response<size_t>(OK, _sessions.size());
 	}
 };
 

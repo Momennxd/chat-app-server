@@ -1,15 +1,18 @@
 #include "router.h"
 
-router::router(shared_ptr<IGroup_service> gs, shared_ptr<ISession_service> ss, shared_ptr<IMessenger_service> ms)
+router::router(std::shared_ptr<IGroup_service> gs,
+    std::shared_ptr<ISession_service> ss,
+    std::shared_ptr<IMessenger_service> ms)
+    : _gs(std::move(gs)),
+    _ss(std::move(ss)),
+    _ms(std::move(ms))
 {
-	this->_gs = gs;
-	this->_ss = ss;
-	this->_ms = ms;
 }
 
-uint32_t router::rout(shared_ptr<request> req)
+std::shared_ptr<response> router::rout(std::shared_ptr<request> req)
 {
-	if (req == nullptr) return 0;
-	req->execute(*_ss, *_gs, *_ms);
-	return 1;
+    if (!req)
+        throw std::runtime_error("undefined req");
+
+    return req->execute(_ss, _gs, _ms);
 }

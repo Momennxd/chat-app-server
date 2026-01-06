@@ -1,14 +1,16 @@
 #pragma once
-#include "enums.h";
-#include "message.h";
-#include "ISession_service.h";
-#include "IGroup_service.h";
-#include "IMessenger_service.h";
+#include <memory>
+#include "IGroup_service.h"
+#include "ISession_service.h"
+#include "IMessenger_service.h"
 
-//netowrk ->(buffer) -> req parser -> (req object) -> router -> target service
 class request {
 public:
     virtual ~request() = default;
-    virtual void execute(ISession_service&, IGroup_service&, IMessenger_service&) = 0;
-};
 
+    virtual std::shared_ptr<response> execute(
+        std::shared_ptr<ISession_service>,
+        std::shared_ptr<IGroup_service>,
+        std::shared_ptr<IMessenger_service>
+    ) = 0;
+};

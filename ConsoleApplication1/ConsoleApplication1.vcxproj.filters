@@ -56,6 +56,9 @@
     <Filter Include="src\entities\request\base">
       <UniqueIdentifier>{0d46d28a-6f15-4dee-8825-f54c5e44c158}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\entities\response">
+      <UniqueIdentifier>{b6a6a45d-9a44-46a1-a610-0bc6ee393e26}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mainServer.cpp" />
@@ -112,14 +115,17 @@
     <ClInclude Include="enums.h">
       <Filter>src\util\enums</Filter>
     </ClInclude>
-    <ClInclude Include="router.h">
-      <Filter>src\services\router</Filter>
-    </ClInclude>
     <ClInclude Include="request.h">
       <Filter>src\entities\request\base</Filter>
     </ClInclude>
     <ClInclude Include="add_session_request.h">
       <Filter>src\entities\request</Filter>
+    </ClInclude>
+    <ClInclude Include="response.h">
+      <Filter>src\entities\response</Filter>
+    </ClInclude>
+    <ClInclude Include="router.h">
+      <Filter>src\services\router</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

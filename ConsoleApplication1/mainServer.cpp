@@ -3,6 +3,15 @@
 #include <vector>
 #include <queue>
 #include "message.h"
+#include "router.h"
+
+//issue
+#include "session_service.cpp"
+
+#include "ISession_repo.h"
+#include "session_repo.cpp"
+
+#include "add_session_request.h"
 
 
 using namespace std;
@@ -50,19 +59,34 @@ void StartAccepting(io_context& io, tcp::acceptor& acceptor, vector<shared_ptr<t
         });
 }
 
+
 int main() {
 
-   /* io_context io;
+    io_context io;
 
-    tcp::acceptor acceptor(io, tcp::endpoint(tcp::v4(), 1234));
-    cout << "Server running...\n";
+    //tcp::acceptor acceptor(io, tcp::endpoint(tcp::v4(), 1234));
+   /* cout << "Server running...\n";
 
     StartAccepting(io, acceptor, clients);
   
     io.run();*/
 
-  
+    shared_ptr<ISession_repo> sr = make_shared<session_repo>();
+    shared_ptr<ISession_service> ss = make_shared<session_service>(sr);
 
-    
+    router r(nullptr, ss, nullptr);
+
+    tcp::socket socket(io);
+    auto req = make_shared<add_session_req>(move(socket));
+    shared_ptr<response> resp = r.rout(req);
+  
+    std::shared_ptr<typed_response<uint32_t>> ts =
+        std::dynamic_pointer_cast<typed_response<uint32_t>>(resp);
+
+    if (ts) {
+        uint32_t value = ts->value();
+        cout << value << endl;
+    }
+
     return 0;
 }

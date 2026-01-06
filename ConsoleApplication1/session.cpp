@@ -31,6 +31,8 @@ int session::get_idle_time()
 
 session::session(tcp::socket&& socket, int id)
 	: m_socket(std::move(socket)), m_id(id) {
+	this->m_id = 0;
+	this->touch();
 }
 
 void session::socket_write_async(const message& msg)

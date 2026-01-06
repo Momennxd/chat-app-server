@@ -154,6 +154,7 @@
     <ClInclude Include="message.h" />
     <ClInclude Include="ISession_repo.h" />
     <ClInclude Include="request.h" />
+    <ClInclude Include="response.h" />
     <ClInclude Include="router.h" />
     <ClInclude Include="session.h" />
     <ClInclude Include="session_repo.cpp" />
