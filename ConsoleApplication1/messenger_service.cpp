@@ -14,12 +14,13 @@ public:
 	{
 	}
 
-	typed_response<uint32_t> send_message(uint32_t group_id, const message& msg) override
+	typed_response<uint32_t> send_message(const vector<uint8_t>& msg_buffer, uint32_t group_id) override
 	{
 		auto session_set = _gr->get_group_sessions(group_id);
+		if (session_set.status() == GROUP_NOT_EXIST) return typed_response<uint32_t>(GROUP_NOT_EXIST, 0);
 		for (auto& s : session_set.value()) {
 			if (s) {
-				s->socket_write_async(msg);
+				s->socket_write_async(msg_buffer);
 			}
 		}
 		return typed_response<uint32_t>(OK, 0);

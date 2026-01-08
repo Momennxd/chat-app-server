@@ -138,6 +138,7 @@
   <ItemGroup>
     <ClCompile Include="Group_service.cpp" />
     <ClCompile Include="messenger_service.cpp" />
+    <ClCompile Include="parser.cpp" />
     <ClCompile Include="router.cpp" />
     <ClCompile Include="session.cpp" />
     <ClCompile Include="mainServer.cpp" />
@@ -153,9 +154,11 @@
     <ClInclude Include="ISession_service.h" />
     <ClInclude Include="message.h" />
     <ClInclude Include="ISession_repo.h" />
+    <ClInclude Include="parser.h" />
     <ClInclude Include="request.h" />
     <ClInclude Include="response.h" />
     <ClInclude Include="router.h" />
+    <ClInclude Include="send_message_request.h" />
     <ClInclude Include="session.h" />
     <ClInclude Include="session_repo.cpp" />
     <ClInclude Include="add_session_request.h" />

@@ -59,6 +59,9 @@
     <Filter Include="src\entities\response">
       <UniqueIdentifier>{b6a6a45d-9a44-46a1-a610-0bc6ee393e26}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\services\parser">
+      <UniqueIdentifier>{5a0afb64-1789-48fc-a0f6-c17ce41c7dbd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mainServer.cpp" />
@@ -73,6 +76,9 @@
     </ClCompile>
     <ClCompile Include="router.cpp">
       <Filter>src\services\router</Filter>
+    </ClCompile>
+    <ClCompile Include="parser.cpp">
+      <Filter>src\services\parser</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -126,6 +132,12 @@
     </ClInclude>
     <ClInclude Include="router.h">
       <Filter>src\services\router</Filter>
+    </ClInclude>
+    <ClInclude Include="send_message_request.h">
+      <Filter>src\entities\request</Filter>
+    </ClInclude>
+    <ClInclude Include="parser.h">
+      <Filter>src\services\parser</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,9 @@
 #pragma once
+#include <vector>
+#include "enums.h"
 
 /////////////////////////////////////////////////
-#define MAX_SPAN_IDLE_SESSION_SECONDS = 1e6;
+#define MAX_SPAN_IDLE_SESSION_SECONDS 1e6;
 
 
 
@@ -28,3 +30,34 @@
 
 #define UNDEFINED_REQUEST 6
 
+
+
+/////////////////////// REQUESTS DATA TYPES PATTERNS /////////////////////
+
+
+/*
+*
+	NULL_REQ = 0,
+
+	ADD_SESSION = 1,
+	REMOVE_SESSION = 2,
+
+	ADD_GROUP = 3,
+	CONNECT_TO_GROUP = 4,
+	DISCONNECT_FROM_GROUP = 5,
+
+	SEND_MESSAGE = 6
+*/
+
+ static std::vector<std::vector<parser_data_patterns>> PDP_MAP{
+
+	{},
+	{},
+	{},
+	{},
+	{},
+	{},
+	//		group_id					// sender_session_id		//text size					// text bytes
+	{parser_data_patterns::INT_32, parser_data_patterns::INT_32, parser_data_patterns::INT_32, parser_data_patterns::STRING}
+
+};

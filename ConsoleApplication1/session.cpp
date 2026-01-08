@@ -13,6 +13,17 @@ void session::set_id(const int id)
 	this->m_id = id;
 }
 
+string session::get_name() const
+{
+	return this->m_name;
+}
+
+void session::set_name(const string& name)
+{
+	if (name.size() == 0) return;
+	this->m_name = name;
+}
+
 
 
 void session::touch()
@@ -35,11 +46,11 @@ session::session(tcp::socket&& socket, int id)
 	this->touch();
 }
 
-void session::socket_write_async(const message& msg)
+void session::socket_write_async(const vector<uint8_t>& buffer)
 {
 	if (!is_active()) return;
 	this->touch();
-	this->m_messages.push(msg);
+	this->m_messages.push(buffer);
 	if (this->m_messages.size() > 1) return;
 	
 	_do_write_async();
@@ -64,8 +75,7 @@ bool session::is_active()
 void session::_do_write_async()
 {
 	if (this->m_messages.empty() || !this->is_active()) return;
-	const auto& msg = this->m_messages.front();
-	const auto& msg_buffer = msg.serialize();
+	const auto& msg_buffer = this->m_messages.front();
 	asio::async_write(this->m_socket, asio::buffer(msg_buffer),
 		[self = shared_from_this()](const asio::error_code& ec, size_t bytes_sent) {
 

@@ -19,9 +19,9 @@ private:
 
 	tcp::socket m_socket;
 	std::chrono::system_clock::time_point m_last_active;
-	queue<message> m_messages;
+	queue<vector<uint8_t>> m_messages;
 	int m_id;
-
+	string m_name;
 
 	void _do_write_async();
 	 void _abort();
@@ -31,12 +31,15 @@ public:
 	int getid() const;
 	void set_id(const int id);
 
+	string get_name() const;
+	void set_name(const string& name);
+
 	void touch();
 	int get_idle_time();
 
 	session(tcp::socket&& socket, int id);
 
-	void socket_write_async(const message& msg);
+	void socket_write_async(const vector<uint8_t>& buffer);
 
 	void close();
 
