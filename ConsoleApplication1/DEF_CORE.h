@@ -57,7 +57,8 @@
 	{},
 	{},
 	{},
-	{},
+	//connect to group req
+	{parser_data_patterns::INT_32, parser_data_patterns::INT_32},
 	{},
 	//msg		group_id					// sender_session_id		//text size					// text bytes
 	{parser_data_patterns::INT_32, parser_data_patterns::INT_32, parser_data_patterns::INT_32, parser_data_patterns::STRING}

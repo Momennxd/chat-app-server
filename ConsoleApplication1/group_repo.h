@@ -25,6 +25,8 @@ public:
         auto it = _group_chats.find(group_id);
         if (it == _group_chats.end()) return typed_response<uint32_t>(GROUP_NOT_EXIST, 0);
         it->second.insert(session_id);
+		cout << "Session " << session_id << " connected to group " << group_id << endl;
+		cout << "group " << group_id << " now has " << it->second.size() << " sessions." << endl;
         return typed_response<uint32_t>(OK, 0);
     }
 

@@ -148,6 +148,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BIT.h" />
+    <ClInclude Include="connect_to_group_req.h" />
     <ClInclude Include="DEF_CORE.h" />
     <ClInclude Include="enums.h" />
     <ClInclude Include="group_repo.h" />

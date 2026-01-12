@@ -183,6 +183,9 @@
     <ClInclude Include="group_service.h">
       <Filter>src\services\groups_services</Filter>
     </ClInclude>
+    <ClInclude Include="connect_to_group_req.h">
+      <Filter>src\entities\request</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Design.txt" />
