@@ -1,3 +1,4 @@
+#pragma once
 // messenger_service.cpp
 #include "IMessenger_service.h"
 #include "IGroup_service.h"

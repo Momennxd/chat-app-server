@@ -1,5 +1,4 @@
 #pragma once
-#include "DEF_CORE.h"
 #include "response.h"
 #include <unordered_set>
 #include <cstdint>

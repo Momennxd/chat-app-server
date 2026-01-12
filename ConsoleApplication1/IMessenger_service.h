@@ -1,7 +1,7 @@
 // IMessenger_service.h
 #pragma once
 
-#include "response.h"   // for typed_response<T>
+#include "response.h"   
 #include <vector>
 #include <cstdint>
 

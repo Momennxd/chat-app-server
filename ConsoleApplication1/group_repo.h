@@ -2,6 +2,7 @@
 #pragma once
 #include "IGroup_repo.h"
 #include "response.h"
+#include "DEF_CORE.h"
 #include <unordered_map>
 #include <unordered_set>
 #include <mutex>

@@ -53,13 +53,13 @@
 
  static std::vector<std::vector<parser_data_patterns>> PDP_MAP{
 
+	{}, 
 	{},
 	{},
 	{},
 	{},
 	{},
-	{},
-	//		group_id					// sender_session_id		//text size					// text bytes
+	//msg		group_id					// sender_session_id		//text size					// text bytes
 	{parser_data_patterns::INT_32, parser_data_patterns::INT_32, parser_data_patterns::INT_32, parser_data_patterns::STRING}
 
 };

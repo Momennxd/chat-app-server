@@ -25,7 +25,6 @@ public:
 
 		_sessions[_sessions_count] = new_session;
 
-
 		//returns the added session id
 		return typed_response<uint32_t>(OK, _sessions_count);
 	}

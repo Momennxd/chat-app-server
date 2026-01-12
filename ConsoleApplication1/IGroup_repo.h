@@ -1,8 +1,7 @@
 // IGroup_repo.h
 #pragma once
-#include "DEF_CORE.h"
 #include <unordered_set>
-#include <cstdint>
+#include "response.h"
 
 class IGroup_repo {
 public:

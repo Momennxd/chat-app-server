@@ -136,8 +136,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="group_service.h" />
-    <ClCompile Include="messenger_service.cpp" />
+    <ClCompile Include="messenger_service.h" />
     <ClCompile Include="network_layer.cpp" />
     <ClCompile Include="parser.cpp" />
     <ClCompile Include="router.cpp" />
@@ -145,12 +144,14 @@
     <ClCompile Include="mainServer.cpp" />
     <ClCompile Include="router_manager.cpp" />
     <ClCompile Include="session.cpp" />
+    <ClCompile Include="tcp_server.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BIT.h" />
     <ClInclude Include="DEF_CORE.h" />
     <ClInclude Include="enums.h" />
     <ClInclude Include="group_repo.h" />
+    <ClInclude Include="group_service.h" />
     <ClInclude Include="IGroup_service.h" />
     <ClInclude Include="IGroup_repo.h" />
     <ClInclude Include="IMessenger_service.h" />
@@ -170,7 +171,6 @@
     <ClInclude Include="session_repo.h" />
     <ClInclude Include="add_session_request.h" />
     <ClInclude Include="session_service.h" />
-    <ClInclude Include="tcp_server.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Design.txt" />

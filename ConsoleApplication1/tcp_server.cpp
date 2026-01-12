@@ -17,13 +17,14 @@ using asio::ip::tcp;
 
 tcp_server::tcp_server(
     asio::io_context& ctx,
+    const asio::ip::address& address,
     unsigned short port,
     std::shared_ptr<IGroup_service> gs,
     std::shared_ptr<ISession_service> ss,
     std::shared_ptr<IMessenger_service> ms
 )
     : io_context_(ctx),
-    acceptor_(ctx, tcp::endpoint(tcp::v4(), port)),
+    acceptor_(ctx, tcp::endpoint(address, port)),
     _gs(std::move(gs)),
     _ss(std::move(ss)),
     _ms(std::move(ms))
@@ -75,7 +76,6 @@ void tcp_server::_accept_next()
                         throw std::runtime_error("Failed to create session ID");
 
                     uint32_t session_id = resp.value();
-
                     auto ns_ptr = std::make_shared<nsession>(
                         std::move(socket),
                         session_id

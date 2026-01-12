@@ -110,7 +110,6 @@ void nsession::_do_write_async()
 {
     if (!is_active() || m_outbox.empty())
         return;
-
     auto self = shared_from_this();
     const auto& msg = m_outbox.front();
 
