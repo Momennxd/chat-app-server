@@ -1,24 +1,29 @@
+#pragma once
+#include "ISession_repo.h"
 
-
-class session_repo : public ISession_repo
+class session_repo : public ISession_repo, public std::enable_shared_from_this<session_repo>
 {
 private:
 	unordered_map<int, shared_ptr<session>> _sessions;
 	int _sessions_count;
 	mutex _gLock;
 
+
+
+
+
 public:
 
 	session_repo() {
 		_sessions_count = 0;
 	}
-	typed_response<uint32_t> add_session(tcp::socket&& socket) override
+	typed_response<uint32_t> add_session() override
 	{
 		std::lock_guard<std::mutex> lock(_gLock);
 		++this->_sessions_count;
-		auto new_session = std::make_shared<session>(std::move(socket), _sessions_count);
+		auto new_session = std::make_shared<session>(_sessions_count);
 
-		_sessions.emplace(_sessions_count, new_session);
+		_sessions[_sessions_count] = new_session;
 
 
 		//returns the added session id
@@ -45,5 +50,7 @@ public:
 		std::lock_guard<std::mutex> lock(_gLock);
 		return typed_response<size_t>(OK, _sessions.size());
 	}
+
+
 };
 

@@ -136,33 +136,41 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Group_service.cpp" />
+    <ClCompile Include="group_service.h" />
     <ClCompile Include="messenger_service.cpp" />
+    <ClCompile Include="network_layer.cpp" />
     <ClCompile Include="parser.cpp" />
     <ClCompile Include="router.cpp" />
-    <ClCompile Include="session.cpp" />
+    <ClCompile Include="nsession.cpp" />
     <ClCompile Include="mainServer.cpp" />
+    <ClCompile Include="router_manager.cpp" />
+    <ClCompile Include="session.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BIT.h" />
     <ClInclude Include="DEF_CORE.h" />
     <ClInclude Include="enums.h" />
-    <ClInclude Include="group_repo.cpp" />
+    <ClInclude Include="group_repo.h" />
     <ClInclude Include="IGroup_service.h" />
     <ClInclude Include="IGroup_repo.h" />
     <ClInclude Include="IMessenger_service.h" />
     <ClInclude Include="ISession_service.h" />
     <ClInclude Include="message.h" />
     <ClInclude Include="ISession_repo.h" />
+    <ClInclude Include="network_layer.h" />
     <ClInclude Include="parser.h" />
     <ClInclude Include="request.h" />
     <ClInclude Include="response.h" />
     <ClInclude Include="router.h" />
+    <ClInclude Include="router_manager.h" />
     <ClInclude Include="send_message_request.h" />
     <ClInclude Include="session.h" />
-    <ClInclude Include="session_repo.cpp" />
+    <ClInclude Include="tcp_server.h" />
+    <ClInclude Include="nsession.h" />
+    <ClInclude Include="session_repo.h" />
     <ClInclude Include="add_session_request.h" />
-    <ClInclude Include="session_service.cpp" />
+    <ClInclude Include="session_service.h" />
+    <ClInclude Include="tcp_server.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Design.txt" />

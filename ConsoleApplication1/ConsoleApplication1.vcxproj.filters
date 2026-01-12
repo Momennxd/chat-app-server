@@ -62,29 +62,55 @@
     <Filter Include="src\services\parser">
       <UniqueIdentifier>{5a0afb64-1789-48fc-a0f6-c17ce41c7dbd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\services\tcp_server">
+      <UniqueIdentifier>{16cf391f-5dd5-4355-9bc7-6968841b8f84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entities\session\model">
+      <UniqueIdentifier>{97ab2706-7c2e-4b67-9835-87f2eacac1be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entities\session\network_session">
+      <UniqueIdentifier>{10419511-a406-4a3a-a974-02dc9089a4bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\services\network_layer">
+      <UniqueIdentifier>{268f323c-880a-485a-a4ce-da08af097a7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\services\router\router_manager">
+      <UniqueIdentifier>{330d8120-b998-4121-9e43-0419d317a558}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\services\router\router">
+      <UniqueIdentifier>{053024e3-b716-48b4-99fa-675f623d9247}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="mainServer.cpp" />
-    <ClCompile Include="session.cpp">
-      <Filter>src\entities\session</Filter>
-    </ClCompile>
-    <ClCompile Include="Group_service.cpp">
+    <ClCompile Include="group_service.h">
       <Filter>src\services\groups_services</Filter>
     </ClCompile>
     <ClCompile Include="messenger_service.cpp">
       <Filter>src\services\messenger_service</Filter>
     </ClCompile>
-    <ClCompile Include="router.cpp">
-      <Filter>src\services\router</Filter>
-    </ClCompile>
     <ClCompile Include="parser.cpp">
       <Filter>src\services\parser</Filter>
     </ClCompile>
+    <ClCompile Include="nsession.cpp">
+      <Filter>src\entities\session\network_session</Filter>
+    </ClCompile>
+    <ClCompile Include="session.cpp">
+      <Filter>src\entities\session\model</Filter>
+    </ClCompile>
+    <ClCompile Include="network_layer.cpp">
+      <Filter>src\services\network_layer</Filter>
+    </ClCompile>
+    <ClCompile Include="mainServer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="router.cpp">
+      <Filter>src\services\router\router</Filter>
+    </ClCompile>
+    <ClCompile Include="router_manager.cpp">
+      <Filter>src\services\router\router_manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="session.h">
-      <Filter>src\entities\session</Filter>
-    </ClInclude>
     <ClInclude Include="DEF_CORE.h">
       <Filter>src</Filter>
     </ClInclude>
@@ -94,19 +120,19 @@
     <ClInclude Include="ISession_repo.h">
       <Filter>src\data\session</Filter>
     </ClInclude>
-    <ClInclude Include="session_repo.cpp">
+    <ClInclude Include="session_repo.h">
       <Filter>src\data\session</Filter>
     </ClInclude>
     <ClInclude Include="IGroup_repo.h">
       <Filter>src\data\group</Filter>
     </ClInclude>
-    <ClInclude Include="group_repo.cpp">
+    <ClInclude Include="group_repo.h">
       <Filter>src\data\group</Filter>
     </ClInclude>
     <ClInclude Include="ISession_service.h">
       <Filter>src\services\sessions_services</Filter>
     </ClInclude>
-    <ClInclude Include="session_service.cpp">
+    <ClInclude Include="session_service.h">
       <Filter>src\services\sessions_services</Filter>
     </ClInclude>
     <ClInclude Include="IGroup_service.h">
@@ -130,14 +156,32 @@
     <ClInclude Include="response.h">
       <Filter>src\entities\response</Filter>
     </ClInclude>
-    <ClInclude Include="router.h">
-      <Filter>src\services\router</Filter>
-    </ClInclude>
     <ClInclude Include="send_message_request.h">
       <Filter>src\entities\request</Filter>
     </ClInclude>
     <ClInclude Include="parser.h">
       <Filter>src\services\parser</Filter>
+    </ClInclude>
+    <ClInclude Include="tcp_server.h">
+      <Filter>src\services\tcp_server</Filter>
+    </ClInclude>
+    <ClInclude Include="nsession.h">
+      <Filter>src\entities\session\network_session</Filter>
+    </ClInclude>
+    <ClInclude Include="session.h">
+      <Filter>src\entities\session\model</Filter>
+    </ClInclude>
+    <ClInclude Include="network_layer.h">
+      <Filter>src\services\network_layer</Filter>
+    </ClInclude>
+    <ClInclude Include="tcp_server.cpp">
+      <Filter>src\services\tcp_server</Filter>
+    </ClInclude>
+    <ClInclude Include="router.h">
+      <Filter>src\services\router\router</Filter>
+    </ClInclude>
+    <ClInclude Include="router_manager.h">
+      <Filter>src\services\router\router_manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

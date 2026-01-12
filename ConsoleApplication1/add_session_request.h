@@ -35,7 +35,7 @@ public:
         _executed = true;
 
         // Use auto to avoid default constructor requirement
-        auto svc_resp = ss->add_session(std::move(_socket));
+        auto svc_resp = ss->add_session();
 
         return std::make_shared<typed_response<uint32_t>>(svc_resp.status(), svc_resp.value());
     }

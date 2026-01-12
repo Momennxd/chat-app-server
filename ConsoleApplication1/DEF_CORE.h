@@ -31,6 +31,8 @@
 #define UNDEFINED_REQUEST 6
 
 
+#define MAX_MESSAGE_SIZE 10000
+
 
 /////////////////////// REQUESTS DATA TYPES PATTERNS /////////////////////
 

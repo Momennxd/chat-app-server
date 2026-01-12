@@ -1,24 +1,40 @@
-﻿#include <asio.hpp>
+﻿
+#include <asio.hpp>
 #include <iostream>
-#include <vector>
-#include <queue>
-#include "message.h"
-#include "router.h"
-#include "DEF_CORE.h"
-#include "BIT.h"
-
-//issue
-#include "session_service.cpp"
-
-#include "ISession_repo.h"
-#include "session_repo.cpp"
-
-#include "add_session_request.h"
-
+//#include <vector>
+//#include <queue>
+//#include "message.h"
+//#include "router.h"
+//#include "DEF_CORE.h"
+//#include "BIT.h"
+//#include "tcp_server.h"
+//#include "group_service.h"
+//#include "session_service.h"
+//#include "messenger_service.h"
+//#include "ISession_repo.h"
+//#include "IGroup_repo.h"
 
 using namespace std;
 using namespace asio;
-using namespace asio::ip;
+
+
+
+/*Think of TCP as giving you:
+
+✅ Reliable delivery — no lost bytes
+✅ Ordered bytes — exactly what you sent, in order
+✅ Flow control — protects receiver
+✅ Congestion control — plays nicely on the network
+
+But it does not give you:
+❌ Message boundaries — that’s up to you
+❌ Encryption — you add TLS/SSL for that
+❌ Broadcast/multicast — one-to-many isn’t supported natively
+
+*/
+
+
+
 
 //1. What is a strand in ASIO ?
 //
@@ -28,70 +44,42 @@ using namespace asio::ip;
 //
 //This is extremely useful for serializing access to shared data, like your m_messages queue.
 
-vector<shared_ptr<tcp::socket>> clients;
-int n = 0;
-//
-//void StartAccepting(io_context& io, tcp::acceptor& acceptor, vector<shared_ptr<tcp::socket>>& clients) {
-//
-//    auto socket = make_shared<tcp::socket>(io);
-//    acceptor.async_accept(*socket, [&, socket](const asio::error_code& ec) {
-//        if (!ec) {
-//            n++;
-//            cout << "A client connected: " << n << endl;
-//
-//            clients.push_back(socket);
-//
-//            message msg("momen", 1, "hi");
-//            auto msg_buffer = msg.serialize();
-//          
-//            asio::async_write(*socket, asio::buffer(msg_buffer),
-//                [socket](const asio::error_code& ec, size_t bytes_sent) {
-//                    if (!ec) {
-//                        cout << "Sent message to client\n";
-//                    }
-//                    else {
-//                        cout << "Write failed: " << ec.message() << endl;
-//                    }
-//                });
-//        }
-//        else {
-//            cout << "Accept failed: " << ec.message() << endl;
-//        }
-//        StartAccepting(io, acceptor, clients);
-//        });
-//}
+
+
 
 
 int main() {
 
-    io_context io;
+    //try {
+    //    // Create io_context (caller owns it)
+    //    asio::io_context io;
 
-    //tcp::acceptor acceptor(io, tcp::endpoint(tcp::v4(), 1234));
-   /* cout << "Server running...\n";
 
-    StartAccepting(io, acceptor, clients);
+    //    auto group_repo = std::make_shared<IGroup_repo>();
+    //    auto session_repo = std::make_shared<ISession_repo>();
 
-    io.run();*/
+    //    // Create services
+    //    auto gs = std::make_shared<group_service>(group_repo);
+    //    auto ss = std::make_shared<session_service>(session_repo);
+    //    auto ms = std::make_shared<messenger_service>(group_repo, session_repo);
 
-    //START WORKING ON DESING THE NETWORK LAYER AND PARSER
+    //    // Create and start server
+    //    tcp_server server(io, 8080, gs, ss, ms);
 
-    //shared_ptr<ISession_repo> sr = make_shared<session_repo>();
-    //shared_ptr<ISession_service> ss = make_shared<session_service>(sr);
+    //    server.start();
 
-    //router r(nullptr, ss, nullptr);
 
-    //tcp::socket socket(io);
-    //auto req = make_shared<add_session_req>(move(socket));
-    //shared_ptr<response> resp = r.rout(req);
-    //
+    //    // ========== IMPORTANT: must run io_context! ==========
+    //    // Option 1: Run in main thread (blocks until stopped)
+    //    std::cout << "Running io_context in main thread...\n";
+    //    io.run();
+    //    // =========================================================
 
-    //std::shared_ptr<typed_response<uint32_t>> ts = std::dynamic_pointer_cast<typed_response<uint32_t>>(resp);
-
-    //if (ts) {
-    //    uint32_t value = ts->value();
     //}
-
-
+    //catch (const std::exception& e) {
+    //    std::cerr << "Exception: " << e.what() << "\n";
+    //    return 1;
+    //}
 
     return 0;
 }

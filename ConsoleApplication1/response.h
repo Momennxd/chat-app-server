@@ -1,6 +1,8 @@
 #pragma once
-using namespace std;
+#include <cstdint> 
+#include <utility> 
 
+using namespace std;
 
 class response {
 private:
@@ -14,7 +16,6 @@ public:
     uint32_t status() const noexcept { return _status; }
 };
 
-
 template<typename T>
 class typed_response : public response {
 private:
@@ -27,5 +28,7 @@ public:
 
     const T& value() const noexcept { return _value; }
 };
+
+
 
 

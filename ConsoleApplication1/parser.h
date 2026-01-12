@@ -1,14 +1,11 @@
 #pragma once
-#include "request.h"
-#include "enums.h"
-#include "BIT.h"
 #include "send_message_request.h"
+#include "BIT.h"
 
 class parser
 {
 private:
 
-	const vector<parser_data_patterns>& _PDPs;
 
 
 	/// <summary>
@@ -16,12 +13,14 @@ private:
 	/// </summary>
 	/// <param name="message_data_buffer"></param>
 	/// <returns></returns>
-	shared_ptr<request> _parse_SMR(vector<uint8_t> message_data_buffer);
+	static shared_ptr<request> _parse_SMR(vector<uint8_t> message_data_buffer);
 public:
 
 	
+	//DONE SO FAR..
+	// ADD_SESSION_REQ, SEND_MSG_REQ
 
-	shared_ptr<request> parse(const vector<uint8_t>& buffer);
+	static shared_ptr<request> parse(const vector<uint8_t>& buffer);
 
 
 };
