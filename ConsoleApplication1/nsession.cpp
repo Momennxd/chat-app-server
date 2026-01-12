@@ -76,7 +76,6 @@ void nsession::_touch()
 
 void nsession::_abort()
 {
-    // ensure object stays alive while we clean up
     std::shared_ptr<nsession> self;
     try {
         self = shared_from_this();
@@ -94,7 +93,6 @@ void nsession::_abort()
     while (!m_outbox.empty())
         m_outbox.pop();
 
-    // remove from network layer (safe: self keeps object alive)
     network_layer::remove_session(m_id);
 }
 
@@ -131,80 +129,75 @@ void nsession::_do_write_async()
 
 
 
-
-
-
 // ---------------- async read ----------------
 
 void nsession::_read_header()
 {
     auto self = shared_from_this();
 
+    // read exactly 4 bytes of header into m_header_bytes (header bytes is the length of the msg body in bytes decoded and coded in big endian)
     asio::async_read(
         m_socket,
-        asio::buffer(&m_msg_length, sizeof(m_msg_length)),
-        [this, self](const error_code& ec, std::size_t) {
+        asio::buffer(m_header_bytes),
+        [self](const asio::error_code& ec, std::size_t /*bytes_transferred*/) {
             if (ec) {
-                _abort();
+                self->_abort();
                 return;
             }
 
-            m_msg_length = ntohl(m_msg_length);
+            // decode big-endian length from the 4 header bytes
+            uint32_t len = BIT::bytes_to_uint32(self->m_header_bytes.data());
 
-            if (m_msg_length == 0 || m_msg_length > MAX_MESSAGE_SIZE) {
-                _abort();
+       
+            if (len == 0 || len > MAX_MESSAGE_SIZE) {
+                std::cerr << "Invalid length: " << len << "\n";
+                self->_abort();
                 return;
             }
 
-            m_body_buffer.resize(m_msg_length);
-            _read_body();
+            self->m_msg_length = len;
+            self->m_body_buffer.resize(self->m_msg_length);
+
+            self->_read_body();
         });
 }
 
-void nsession::_read_body() {
+void nsession::_read_body()
+{
     auto self = shared_from_this();
 
+    // read exactly m_msg_length bytes into the body buffer
     asio::async_read(
         m_socket,
-        asio::buffer(m_body_buffer.data(), m_msg_length),
-        [this, self](const error_code& ec, std::size_t) {
+        asio::buffer(self->m_body_buffer.data(), self->m_msg_length),
+        [self](const asio::error_code& ec, std::size_t /*bytes_transferred*/) {
             if (ec) {
-                _abort();
+                self->_abort();
                 return;
             }
 
-            _touch();
+            self->_touch();
 
-            std::shared_ptr<request> req;
             try {
-                req = parser::parse(m_body_buffer);
+                auto req = parser::parse(self->m_body_buffer);
+                if (req) {
+                    auto _router = router_manager::get_router();
+                    if (_router) {
+                        auto resp = _router->rout(req);
+                        // TODOOO =>>> handle resp 
+                    }
+                    else {
+                        std::cerr << "Router not initialized\n";
+                    }
+                }
             }
             catch (const std::exception& ex) {
-                std::cerr << "Parse error: " << ex.what() << "\n";
-                _abort();
+                std::cerr << "Parse/router error: " << ex.what() << "\n";
+                self->_abort();
                 return;
-            }
-
-            if (req) {
-
-                auto _router = router_manager::get_router();
-
-                if (_router) {
-                    try {
-                        auto resp = _router->rout(req);
-                    }
-                    catch (const std::exception& ex) {
-                        std::cerr << "Router error: " << ex.what() << "\n";
-                        _abort();
-                        return;
-                    }
-                }
-                else {
-                    std::cerr << "Router not initialized\n";
-                }
             }
 
             // ready for next message
-            _read_header();
+            self->_read_header();
         });
 }

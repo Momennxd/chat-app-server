@@ -33,9 +33,9 @@ private:
     // outbound messages (ordered)
     std::queue<std::vector<uint8_t>> m_outbox;
 
-    // inbound message handling
-    uint32_t m_msg_length = 0;
-    std::vector<uint8_t> m_body_buffer;
+    std::array<uint8_t, 4> m_header_bytes{};
+    uint32_t               m_msg_length = 0;
+    std::vector<uint8_t>   m_body_buffer;
 
 private:
 

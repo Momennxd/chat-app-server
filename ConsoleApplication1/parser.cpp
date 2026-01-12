@@ -9,16 +9,17 @@
 
 
 	/// SMIPLE GROUP_ID VALIDATOR
-		if (message_data_buffer.size() < 4) throw runtime_error("undefined buffer");
+		if (message_data_buffer.size() < 4) throw runtime_error("buffer size is less than 4");
 	//
 
+	cout << "Parsing SEND_MESSAGE_REQ, buffer size: " << message_data_buffer.size() << endl;
 	uint32_t group_id = BIT::bytes_to_uint32(message_data_buffer.data());
 	return make_shared<send_message_req>(send_message_req(std::move(message_data_buffer), group_id));
 }
 
 shared_ptr<request> parser::parse(const vector<uint8_t>& buffer)
 {
-	if (buffer.size() < 4) throw runtime_error("undefined buffer");
+	if (buffer.size() < 4) throw runtime_error("buffer size is less than 4");
 	uint32_t req_type = BIT::bytes_to_uint32(buffer.data());
 	
 	switch (req_type) {

@@ -23,7 +23,7 @@ public:
         }
 
         const auto& ids = sessions_resp.value();
-
+		cout << "Sending message to group " << group_id << " size " << msg_buffer.size() << " to " << ids.size() << " sessions." << endl;
         // Delegate actual writes to network_layer
         size_t sent_count = network_layer::write_to_sessions(ids, msg_buffer);
 
