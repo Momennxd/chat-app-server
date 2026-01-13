@@ -143,6 +143,7 @@
     <ClCompile Include="nsession.cpp" />
     <ClCompile Include="mainServer.cpp" />
     <ClCompile Include="router_manager.cpp" />
+    <ClCompile Include="services_manager.cpp" />
     <ClCompile Include="session.cpp" />
     <ClCompile Include="tcp_server.cpp" />
   </ItemGroup>
@@ -166,6 +167,7 @@
     <ClInclude Include="router.h" />
     <ClInclude Include="router_manager.h" />
     <ClInclude Include="send_message_request.h" />
+    <ClInclude Include="services_manager.h" />
     <ClInclude Include="session.h" />
     <ClInclude Include="tcp_server.h" />
     <ClInclude Include="nsession.h" />

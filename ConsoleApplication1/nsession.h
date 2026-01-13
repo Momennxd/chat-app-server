@@ -23,6 +23,8 @@ public:
     bool is_active() const;
     uint32_t getid() const;
 
+    long long get_idle_time();
+
 private:
     tcp::socket m_socket;
 
@@ -36,6 +38,7 @@ private:
     std::array<uint8_t, 4> m_header_bytes{};
     uint32_t               m_msg_length = 0;
     std::vector<uint8_t>   m_body_buffer;
+
 
 private:
 

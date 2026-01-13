@@ -3,7 +3,8 @@
 #include "enums.h"
 
 /////////////////////////////////////////////////
-#define MAX_SPAN_IDLE_SESSION_SECONDS 1e6;
+#define MAX_SPAN_IDLE_SESSION_SECONDS 3600
+#define MONITOR_IDLE_SESSIONS_EACH 100
 
 
 

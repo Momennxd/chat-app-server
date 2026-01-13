@@ -10,6 +10,7 @@
 
 
 #include <iostream>
+#include <chrono>
 
 
 using asio::ip::tcp;
@@ -34,6 +35,24 @@ tcp_server::tcp_server(
     router_manager::initialize(r);
 }
 
+
+tcp_server::tcp_server(
+    asio::io_context& ctx,
+    unsigned short port,
+    std::shared_ptr<IGroup_service> gs,
+    std::shared_ptr<ISession_service> ss,
+    std::shared_ptr<IMessenger_service> ms
+)
+    : io_context_(ctx),
+    acceptor_(ctx, tcp::endpoint(asio::ip::address_v4::any(), port)),
+    _gs(std::move(gs)),
+    _ss(std::move(ss)),
+    _ms(std::move(ms))
+{
+    auto r = std::make_shared<router>(_gs, _ss, _ms);
+    router_manager::initialize(r);
+}
+
 void tcp_server::start()
 {
     if (is_on_.exchange(true))
@@ -43,6 +62,10 @@ void tcp_server::start()
 
     std::cout << "Server started on port "
         << acceptor_.local_endpoint().port() << "\n";
+
+    network_layer::start_idle_monitor(io_context_, std::chrono::seconds(MONITOR_IDLE_SESSIONS_EACH), std::chrono::seconds(MAX_SPAN_IDLE_SESSION_SECONDS));
+
+   
 }
 
 void tcp_server::stop()
@@ -72,10 +95,10 @@ void tcp_server::_accept_next()
             {
                 try
                 {
+                    //socket.set_option(asio::socket_base::keep_alive(true));
                     auto resp = _ss->add_session();
                     if (resp.status() != OK)
                         throw std::runtime_error("Failed to create session ID");
-
                     uint32_t session_id = resp.value();
                     auto ns_ptr = std::make_shared<nsession>(
                         std::move(socket),
@@ -84,10 +107,11 @@ void tcp_server::_accept_next()
 
                     network_layer::add_session(session_id, ns_ptr);
 
+                    ////////////////////////// This is a temporary design (response is always considered as a int32)   //////////////////////////////////
 					// send session ID to client
                     auto buf = BIT::uint32_to_bytes_buffer(session_id);
                     ns_ptr->socket_write_async(buf);
-
+                    //////////////////////////////////////////////////////////// ////////////////////////////////// //////////////////////////////////
 
 					//start the session to read messages in async mode
                     ns_ptr->start();

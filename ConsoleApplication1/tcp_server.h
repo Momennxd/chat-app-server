@@ -21,6 +21,14 @@ public:
         std::shared_ptr<IMessenger_service> ms
     );
 
+    tcp_server(
+        asio::io_context& ctx,
+        unsigned short port,
+        std::shared_ptr<IGroup_service> gs,
+        std::shared_ptr<ISession_service> ss,
+        std::shared_ptr<IMessenger_service> ms
+    );
+
     void start();
     void stop();
 

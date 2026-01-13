@@ -73,7 +73,12 @@ void nsession::_touch()
     m_last_active = std::chrono::system_clock::now();
 }
 
-
+long long nsession::get_idle_time()
+{
+    auto now = std::chrono::system_clock::now();
+    auto idle_duration = now - m_last_active;
+    return std::chrono::duration_cast<std::chrono::seconds>(idle_duration).count();
+}
 
 void nsession::_abort()
 {
@@ -145,7 +150,7 @@ void nsession::_read_header()
                 self->_abort();
                 return;
             }
-
+			self->_touch();
             // decode big-endian length from the 4 header bytes
             uint32_t len = BIT::bytes_to_uint32(self->m_header_bytes.data());
 

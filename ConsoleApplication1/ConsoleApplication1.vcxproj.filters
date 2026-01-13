@@ -80,6 +80,9 @@
     <Filter Include="src\services\router\router">
       <UniqueIdentifier>{053024e3-b716-48b4-99fa-675f623d9247}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\services\manager">
+      <UniqueIdentifier>{23ca0ae6-3305-495c-ad08-ff6664756722}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="messenger_service.h">
@@ -108,6 +111,9 @@
     </ClCompile>
     <ClCompile Include="tcp_server.cpp">
       <Filter>src\services\tcp_server</Filter>
+    </ClCompile>
+    <ClCompile Include="services_manager.cpp">
+      <Filter>src\services\manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -185,6 +191,9 @@
     </ClInclude>
     <ClInclude Include="connect_to_group_req.h">
       <Filter>src\entities\request</Filter>
+    </ClInclude>
+    <ClInclude Include="services_manager.h">
+      <Filter>src\services\manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
