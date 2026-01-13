@@ -10,6 +10,7 @@ std::mutex network_layer::_nsessions_mutex;
 void network_layer::add_session(uint32_t id, std::shared_ptr<nsession> ses) {
     std::lock_guard<std::mutex> lock(_nsessions_mutex);
     _nsessions[id] = std::move(ses);
+	std::cout << "Session added. Total sessions: " << _nsessions.size() << "\n";
 }
 
 void network_layer::remove_session(uint32_t id) {

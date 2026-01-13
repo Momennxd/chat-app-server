@@ -5,6 +5,7 @@
 #include "tcp_server.h"        
 #include "router.h"        
 #include "router_manager.h"
+#include "response.h"
 
 #include <asio.hpp>
 #include <iostream>
@@ -184,7 +185,13 @@ void nsession::_read_body()
                     auto _router = router_manager::get_router();
                     if (_router) {
                         auto resp = _router->rout(req);
-                        // TODOOO =>>> handle resp 
+                        
+                        if (resp) {
+                            auto typ_resp = dynamic_pointer_cast<typed_response<uint32_t>>(resp);
+                            
+                            // TODOOO =>>> handle resp 
+                        }
+                      
                     }
                     else {
                         std::cerr << "Router not initialized\n";

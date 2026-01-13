@@ -6,6 +6,7 @@
 #include "ISession_service.h"
 #include "IMessenger_service.h"
 #include "router_manager.h"
+#include "BIT.h"
 
 
 #include <iostream>
@@ -82,6 +83,13 @@ void tcp_server::_accept_next()
                     );
 
                     network_layer::add_session(session_id, ns_ptr);
+
+					// send session ID to client
+                    auto buf = BIT::uint32_to_bytes_buffer(session_id);
+                    ns_ptr->socket_write_async(buf);
+
+
+					//start the session to read messages in async mode
                     ns_ptr->start();
                 }
                 catch (const std::exception& e)

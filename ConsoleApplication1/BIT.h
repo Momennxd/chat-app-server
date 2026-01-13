@@ -13,6 +13,17 @@ public:
         
     }
 
+    static inline std::vector<uint8_t> uint32_to_bytes_buffer(uint32_t num) noexcept {
+        std::vector<uint8_t> buffer;
+        buffer.reserve(4);
+        buffer.push_back(static_cast<uint8_t>((num >> 24) & 0xFF));
+        buffer.push_back(static_cast<uint8_t>((num >> 16) & 0xFF));
+        buffer.push_back(static_cast<uint8_t>((num >> 8) & 0xFF));
+        buffer.push_back(static_cast<uint8_t>(num & 0xFF));
+        return buffer;
+    }
+
+
 
     static inline uint32_t bytes_to_uint8(const uint8_t* byte) {
         return uint32_t(byte[0]);

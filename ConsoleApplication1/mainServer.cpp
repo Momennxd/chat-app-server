@@ -27,6 +27,7 @@ int main() {
         asio::ip::address address = asio::ip::make_address(ipStr);
 
         gs->add_group(); // create default group with id 1
+
         unsigned short port = 8080;
         tcp_server server(io,address, port, gs, ss, ms);
         server.start();
