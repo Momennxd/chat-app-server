@@ -94,15 +94,10 @@ bool network_layer::write_to_session(uint32_t id, const std::vector<uint8_t>& bu
 }
 
 size_t network_layer::write_to_sessions(const std::unordered_set<uint32_t>& ids, const std::vector<uint8_t>& buffer) {
-    std::vector<std::shared_ptr<nsession>> to_write;
-    {
-        std::lock_guard<std::mutex> lock(_nsessions_mutex);
-        to_write.reserve(ids.size());
-        for (auto id : ids) {
-            auto it = _nsessions.find(id);
-            if (it != _nsessions.end()) to_write.push_back(it->second);
-        }
+    int c = 0;
+    for (auto& id : ids) {
+        if (_nsessions.count(id))
+            _nsessions[id]->socket_write_async(buffer), c++;
     }
-    for (auto& s : to_write) s->socket_write_async(buffer); // outside lock
-    return to_write.size();
+    return c;
 }

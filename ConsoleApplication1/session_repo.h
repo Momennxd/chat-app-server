@@ -17,6 +17,7 @@ public:
 	session_repo() {
 		_sessions_count = 0;
 	}
+
 	typed_response<uint32_t> add_session() override
 	{
 		std::lock_guard<std::mutex> lock(_gLock);

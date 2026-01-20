@@ -13,7 +13,11 @@
 	//
 
 	cout << "Parsing SEND_MESSAGE_REQ, buffer size: " << message_data_buffer.size() << endl;
+
 	uint32_t group_id = BIT::bytes_to_uint32(message_data_buffer.data());
+	uint32_t msg_size = BIT::bytes_to_uint32(message_data_buffer.data() + 8);
+
+
 	return make_shared<send_message_req>(send_message_req(std::move(message_data_buffer), group_id));
 }
 

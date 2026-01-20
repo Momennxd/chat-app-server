@@ -35,8 +35,8 @@ int main() {
         gs->add_group(); // create default group with id 1
 
         unsigned short port = 8080;
-       // tcp_server server(io, port, gs, ss, ms);
-        tcp_server server(io, address, port, gs, ss, ms);
+        tcp_server server(io, port, gs, ss, ms);
+        //tcp_server server(io, address, port, gs, ss, ms);
         server.start();
 
         io.run();
