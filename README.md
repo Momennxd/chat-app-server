@@ -106,3 +106,29 @@ Each request follows this format:
 
 ```cpp
 Response execute();
+```
+
+### Request Examples
+- `SendMessageRequest`
+- `ConnectToGroupRequest`
+- `OtherRequest...`
+
+Each request:
+- Contains its own logic
+- Knows how to execute itself
+- Returns a base `Response` object
+
+---
+
+### Request Base & Request Handlers
+- All requests inherit from `RequestBase`
+- Each request implements a single public method:
+
+```cpp
+Response execute();
+```
+
+Notes
+
+I am not a networking or C++ expert, and there may be design flaws or improvements you can spot.
+If you have feedback, ideas, or want to contribute — feel free to open an issue or comment.
